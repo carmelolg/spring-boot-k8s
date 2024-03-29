@@ -1,5 +1,8 @@
 FROM openjdk:8-jdk-alpine
 VOLUME /tmp
-ARG JAR_FILE
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+# RUN mvn install -DskipTests
+COPY target/*.jar spring-boot-k8s.jar
+ENV SPRING_PROFILES_ACTIVE=prod
+ENV SPRING-BOOT_RUN_PROFILES=prod
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "/spring-boot-k8s.jar"]

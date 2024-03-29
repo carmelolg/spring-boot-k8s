@@ -4,3 +4,6 @@ environment: prod
 name: Production
 url: localhost
 port: 8080
+secrets:
+    username: ${SECRET_USER}
+    password: ${SECRET_PASSWORD}

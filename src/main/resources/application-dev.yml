@@ -4,3 +4,6 @@ environment: test
 name: Test
 url: localhost
 port: 8080
+secrets:
+    username: ${SECRET_USER}
+    password: ${SECRET_PASSWORD}

@@ -3,6 +3,7 @@ package it.carmelolagamba.springboot.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import it.carmelolagamba.springboot.config.ApplicationProperties;
+import it.carmelolagamba.springboot.config.SecretsProperties;
 import it.carmelolagamba.springboot.dto.system.InfoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,9 @@ public class SystemController {
 
 	@Autowired
 	private ApplicationProperties config;
+
+	@Autowired
+	private SecretsProperties secretsProperties;
 
 	@ApiOperation(value = "Alive test")
 	@RequestMapping(method = RequestMethod.GET, path = "/ping")
@@ -36,4 +40,14 @@ public class SystemController {
 		return infoDto;
 	}
 
+
+	@ApiOperation(value = "Get secrets")
+	@RequestMapping(method = RequestMethod.GET, path = "/secrets")
+	public String secrets() {
+		return secretsProperties.getUsername()+":"+secretsProperties.getPassword();
+	}
+
 }
+
+
+//curl --resolve "scaffold.carmelolg.io:80:$( minikube ip )" -i http://scaffold.carmelolg.io/info

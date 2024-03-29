@@ -15,11 +15,11 @@
 
 For Develop
 
-`mvn spring-boot:run -Dspring.profiles.active=dev`
+`mvn spring-boot:run -Dspring-boot.run.profiles=dev`
 
 For Production
 
-`mvn spring-boot:run -Dspring.profiles.active=prod`
+`mvn spring-boot:run -Dspring-boot.run.profiles=prod`
 
 ## Swagger page
 

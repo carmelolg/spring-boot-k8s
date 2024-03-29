@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-k8s-deployment
+  labels:
+    app: spring-boot-k8s
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-boot-k8s
+  template:
+    metadata:
+      labels:
+        app: spring-boot-k8s
+    spec:
+      containers:
+      - name: spring-boot-k8s
+        image: spring-boot-k8s:1
+        ports:
+        - containerPort: 80
+        env:
+        - name: SECRET_USER
+          valueFrom: 
+            secretKeyRef: 
+              name: spring-boot-k8s-secret
+              key: username 
+        - name: SECRET_PASSWORD
+          valueFrom: 
+            secretKeyRef: 
+              name: spring-boot-k8s-secret
+              key: password

@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: spring-boot-k8s-default
+  namespace: default
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: scaffold.carmelolg.io
+    http:
+      paths:
+      - backend:
+          service:
+            name: spring-boot-k8s-service
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
